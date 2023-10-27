@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 const int stringsize = 50;
 
 struct info{
@@ -14,14 +15,6 @@ struct info{
 	double limit;
 	};
 
-char decision;
-cout << "Please select an option: " << endl;
-cout << "\n-_-_-_-_-_-_-_-_-_-_-_\n" << endl;
-cout << "a. Display balance\n" << endl;
-cout << "b. Deposit\n" << endl;
-cout << "c. Withdrawal\n" << endl;
-cout << "d. Log out\n" << endl;
-
 
 int main() {
 	info tracy = { "Tracy Smith", 294856, 25895.03, 0.00, 800.00 };
@@ -29,43 +22,107 @@ int main() {
 	info han = { "Han Solo", 932012, 42.11, 580.00, 600.00 };
 
 	cout << "Welcome to College of the Rockies online bank. " << endl;
-	cout << "\n-____-___-___-___-___-___-___-___-___\n" << endl;
+	cout << "\n-___-___-___-___-___-___-___-___-___\n" << endl;
 	cout << "\nEnter your account number: " << endl;
-
+	char decision{};
 	int choice;
-	while(1)
+	int person;
+	int deposit;
+	int withdrawal;
+	while (1)
 	{
 		cin >> choice;
 
 		if (choice == tracy.accountnumber)
 		{
 			cout << "Hello, " << tracy.accountowner;
+			person = 1;
+			break;
 		}
 		else if (choice == john.accountnumber) {
 			cout << "Hello, " << john.accountowner;
+			person = 2;
+			break;
 		}
 		else if (choice == han.accountnumber) {
 			cout << "Hello, " << han.accountowner;
+			person = 3;
+			break;
 		}
 		else if (choice == 999999) {
 			cout << "Oh no! Shutting down. " << endl;
-			break;
+			return 0;
 		}
 		else {
 			cout << "Enter a valid account number. " << endl;
 		}
 	}
+	while (1) {
+		cout << "\nPlease select an option: " << endl;
+		cout << "\n-_-_-_-_-_-_-_-_-_-_-_\n" << endl;
+		cout << "a. Display balance\n" << endl;
+		cout << "b. Deposit\n" << endl;
+		cout << "c. Withdrawal\n" << endl;
+		cout << "d. Log out\n" << endl;
+		cin >> decision;
 
 
 
+		switch (decision) {
 
+		case 'a': cout << "Your balance is: \n";
+			if (person == 1) {
+				cout << tracy.balance << endl;
+			}
+			else if (person == 2) {
+				cout << john.balance << endl;
+			}
+			else if (person == 3) {
+				cout << han.balance << endl;
+			} break;
 
+		case 'b': cout << "Deposit amount: \n";
+			if (person == 1) {
+				cin >> deposit;
+				cout << "Your new account balance is " << (tracy.balance + deposit) << endl;
+			}
+			else if (person == 2) {
+				cin >> deposit;
+				cout << "Your new account balance is " << (john.balance + deposit) << endl;
+			}
+			else if (person == 3) {
+				cin >> deposit;
+				cout << "Your new account balance is " << (han.balance + deposit) << endl;
+			} break;
 
+		case 'c': cout << "Withdrawal amount: \n";
+			if (person == 1) {
+				cout << "Total withdrawals made today: " << tracy.amount << endl;
+				cin >> withdrawal;
+				(tracy.amount -= withdrawal);
+				cout << "Withdrawal complete. Your new account balance is " << tracy.amount << endl;
+			}
+			else if (person == 2) {
+				cout << "Total withdrawals made today: " << john.amount << endl;
+				cin >> withdrawal;
+				(john.amount -= withdrawal);
+				cout << "Withdrawal complete. Your new account balance is " << john.amount << endl;
+			}
+			else if (person == 3) {
+				cout << "Total withdrawals made today: " << han.amount << endl;
+				cin >> withdrawal;
+				if (withdrawal < (han.limit - han.amount)) {
+					(han.balance -= withdrawal);
+					cout << "Withdrawal complete. Your new account balance is " << han.balance << endl;
+				}
+				else {
+					cout << "Insufficient funds. " << endl;
+				}
+			} break;
+	
 
+			return 0;
+		}
+	}
 
-
-
-
-	cin.get();
-	return 0;
 }
