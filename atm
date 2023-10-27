@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+
+
+using namespace std;
+
+const int stringsize = 50;
+
+struct info{
+	char accountowner[stringsize];
+	int accountnumber;
+	double balance;
+	double amount;
+	double limit;
+	};
+
+char decision;
+cout << "Please select an option: " << endl;
+cout << "\n-_-_-_-_-_-_-_-_-_-_-_\n" << endl;
+cout << "a. Display balance\n" << endl;
+cout << "b. Deposit\n" << endl;
+cout << "c. Withdrawal\n" << endl;
+cout << "d. Log out\n" << endl;
+
+
+int main() {
+	info tracy = { "Tracy Smith", 294856, 25895.03, 0.00, 800.00 };
+	info john = { "John Doe", 394023, 13511.54, 450.00, 1000.00 };
+	info han = { "Han Solo", 932012, 42.11, 580.00, 600.00 };
+
+	cout << "Welcome to College of the Rockies online bank. " << endl;
+	cout << "\n-____-___-___-___-___-___-___-___-___\n" << endl;
+	cout << "\nEnter your account number: " << endl;
+
+	int choice;
+	while(1)
+	{
+		cin >> choice;
+
+		if (choice == tracy.accountnumber)
+		{
+			cout << "Hello, " << tracy.accountowner;
+		}
+		else if (choice == john.accountnumber) {
+			cout << "Hello, " << john.accountowner;
+		}
+		else if (choice == han.accountnumber) {
+			cout << "Hello, " << han.accountowner;
+		}
+		else if (choice == 999999) {
+			cout << "Oh no! Shutting down. " << endl;
+			break;
+		}
+		else {
+			cout << "Enter a valid account number. " << endl;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+	cin.get();
+	return 0;
+}
